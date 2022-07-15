@@ -1,0 +1,21 @@
+{
+  "name": "kami-lru-cache",
+  "version": "1.0.0",
+  "description": "Simple LRU-Cache, created for some of my personal projects",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "npx tsc && node dist/index.js",
+    "build": "npx tsc",
+    "test": "npx tsc && jest"
+  },
+  "keywords": ["cache", "memory", "lru"],
+  "author": "alanfilho184",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/jest": "^28.1.5",
+    "@types/node": "^18.0.4",
+    "ts-jest": "^28.0.6",
+    "typescript": "^4.7.4"
+  }
+}
