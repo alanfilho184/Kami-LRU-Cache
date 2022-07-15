@@ -1,7 +1,7 @@
 {
   "name": "kami-lru-cache",
-  "version": "1.0.0",
-  "description": "Simple LRU-Cache, created for some of my personal projects",
+  "version": "1.0.1",
+  "description": "Simple LRU-Cache, created for my personal projects",
   "main": "dist/index.js",
   "scripts": {
     "start": "npx tsc && node dist/index.js",
