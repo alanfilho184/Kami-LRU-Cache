@@ -3,6 +3,21 @@ import { kami_cache } from './kami_cache'
 describe("Test methods of cache class", () => {
   const test_cache = new kami_cache({ updateAgeOnGet: true, maxAge: 60000, rateOfVerifyAgedKeys: 1000 })
 
+  jest.setTimeout(20000)
+  it('Test autoDeleteFromCache event emission', async () => {
+    expect(test_cache.set("test", { test: "item" }, 10000)).toBeTruthy()
+    expect(await new Promise(async (resolve, reject) => {
+      test_cache._events.on('autoDeleteFromCache', (key) => { 
+        if(key){
+          resolve(key)
+        }
+        else{
+          reject()
+        }
+      })
+    })).toBe('test')
+  })
+
   it('Test set on cache', () => {
     expect(test_cache.set("test", { test: "item" })).toBeTruthy()
   })

@@ -1,11 +1,14 @@
+import EventEmitter from "events"
+
 export class kami_cache {
   map: Map<string, any>
   maxAge: number
   updateAgeOnGet: boolean
-
-  
+  _events: EventEmitter
 
   constructor(options: { maxAge?: number, updateAgeOnGet?: boolean, rateOfVerifyAgedKeys?: number } = { maxAge: 0, updateAgeOnGet: false, rateOfVerifyAgedKeys: 60000 }) {
+    const events = new EventEmitter()
+
     this.map = new Map()
     this.maxAge = options.maxAge || 0
     this.updateAgeOnGet = options.updateAgeOnGet || false
@@ -17,11 +20,14 @@ export class kami_cache {
         } catch (err) { }
         if (Date.now() - info.usedAt >= info.maxAge && info.maxAge != 0) {
           this.map.delete(info.key)
+          events.emit('autoDeleteFromCache', (info.key))
         }
       })
     }, options.rateOfVerifyAgedKeys || 60000)
-  }
 
+    this._events = events
+  }
+  
   set(key: string, value: any, maxAge?: number,) {
     this.map.set(key, JSON.stringify({ key: key, content: value, maxAge: maxAge || this.maxAge, creationTime: Date.now(), usedAt: Date.now() }))
 

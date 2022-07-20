@@ -12,6 +12,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const kami_cache_1 = require("./kami_cache");
 describe("Test methods of cache class", () => {
     const test_cache = new kami_cache_1.kami_cache({ updateAgeOnGet: true, maxAge: 60000, rateOfVerifyAgedKeys: 1000 });
+    jest.setTimeout(20000);
+    it('Test autoDeleteFromCache event emission', () => __awaiter(void 0, void 0, void 0, function* () {
+        expect(test_cache.set("test", { test: "item" }, 10000)).toBeTruthy();
+        expect(yield new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+            test_cache._events.on('autoDeleteFromCache', (key) => {
+                if (key) {
+                    resolve(key);
+                }
+                else {
+                    reject();
+                }
+            });
+        }))).toBe('test');
+    }));
     it('Test set on cache', () => {
         expect(test_cache.set("test", { test: "item" })).toBeTruthy();
     });

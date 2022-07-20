@@ -1,6 +1,6 @@
 {
   "name": "kami-lru-cache",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Simple LRU-Cache, created for my personal projects",
   "main": "dist/index.js",
   "scripts": {
