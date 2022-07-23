@@ -1,5 +1,5 @@
 {
-  "name": "kami-lru-cache",
+  "name": "@alanfilho184/kami-lru-cache",
   "version": "1.1.1",
   "description": "Simple LRU-Cache, created for my personal projects",
   "main": "dist/index.js",
@@ -8,7 +8,11 @@
     "build": "npx tsc",
     "test": "jest --forceExit"
   },
-  "keywords": ["cache", "memory", "lru"],
+  "keywords": [
+    "cache",
+    "memory",
+    "lru"
+  ],
   "author": "alanfilho184",
   "license": "ISC",
   "devDependencies": {
@@ -17,5 +21,14 @@
     "@types/node": "^18.0.4",
     "ts-jest": "^28.0.6",
     "typescript": "^4.7.4"
-  }
+  },
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanfilho184/Kami-LRU-Cache.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alanfilho184/Kami-LRU-Cache/issues"
+  },
+  "homepage": "https://github.com/alanfilho184/Kami-LRU-Cache#readme"
 }
