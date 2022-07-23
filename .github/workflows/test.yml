@@ -32,5 +32,5 @@ jobs:
     - run: npm i --save-dev @types/jest
     - run: npm i --save-dev @types/node
     - run: npm i --save-dev @babel/preset-typescript
-    - run: npm build
+    - run: npm run build
     - run: npm test
