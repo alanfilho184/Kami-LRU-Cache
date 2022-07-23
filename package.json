@@ -1,12 +1,12 @@
 {
   "name": "kami-lru-cache",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple LRU-Cache, created for my personal projects",
   "main": "dist/index.js",
   "scripts": {
     "start": "npx tsc && node dist/index.js",
     "build": "npx tsc",
-    "test": "npx tsc && jest"
+    "test": "jest --forceExit"
   },
   "keywords": ["cache", "memory", "lru"],
   "author": "alanfilho184",

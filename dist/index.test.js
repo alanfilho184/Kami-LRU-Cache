@@ -1,21 +1,12 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const kami_cache_1 = require("./kami_cache");
+const _1 = require(".");
+let test_cache = new _1.kami_cache({ updateAgeOnGet: true, maxAge: 60000, rateOfVerifyAgedKeys: 1000 });
 describe("Test methods of cache class", () => {
-    const test_cache = new kami_cache_1.kami_cache({ updateAgeOnGet: true, maxAge: 60000, rateOfVerifyAgedKeys: 1000 });
     jest.setTimeout(20000);
-    it('Test autoDeleteFromCache event emission', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Test autoDeleteFromCache event emission', async () => {
         expect(test_cache.set("test", { test: "item" }, 10000)).toBeTruthy();
-        expect(yield new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+        expect(await new Promise(async (resolve, reject) => {
             test_cache._events.on('autoDeleteFromCache', (key) => {
                 if (key) {
                     resolve(key);
@@ -24,8 +15,8 @@ describe("Test methods of cache class", () => {
                     reject();
                 }
             });
-        }))).toBe('test');
-    }));
+        })).toBe('test');
+    });
     it('Test set on cache', () => {
         expect(test_cache.set("test", { test: "item" })).toBeTruthy();
     });
@@ -45,20 +36,20 @@ describe("Test methods of cache class", () => {
         expect(test_cache.length()).toEqual(0);
     });
     jest.setTimeout(15000);
-    it('Test auto delete after hit maxAge', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Test auto delete after hit maxAge', async () => {
         expect(test_cache.set("test", { test: "item" }, 10000)).toBeTruthy();
         expect(test_cache.get("test")).toEqual({ test: "item" });
-        yield new Promise(r => setTimeout(r, 11000));
+        await new Promise(r => setTimeout(r, 11000));
         expect(test_cache.get("test")).toBeUndefined();
-    }));
-    it('Test updateAgeOnGet and auto delete after hit maxAge with multiple items', () => __awaiter(void 0, void 0, void 0, function* () {
+    });
+    it('Test updateAgeOnGet and auto delete after hit maxAge with multiple items', async () => {
         expect(test_cache.set("test", { test: "item" }, 3000)).toBeTruthy();
         expect(test_cache.set("test2", { test: "item2" })).toBeTruthy();
         expect(test_cache.get("test")).toEqual({ test: "item" });
         expect(test_cache.get("test")).toEqual({ test: "item" });
         expect(test_cache.get("test")).toEqual({ test: "item" });
-        yield new Promise(r => setTimeout(r, 10000));
+        await new Promise(r => setTimeout(r, 10000));
         expect(test_cache.get("test")).toBeUndefined();
         expect(test_cache.get("test2")).toEqual({ test: "item2" });
-    }));
+    });
 });
