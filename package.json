@@ -1,17 +1,21 @@
 {
   "name": "@alanfilho184/kami-lru-cache",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Simple LRU-Cache, created for my personal projects",
   "main": "dist/index.js",
   "scripts": {
     "start": "npx tsc && node dist/index.js",
     "build": "npx tsc",
-    "test": "jest --forceExit"
+    "test": "jest --forceExit",
+    "build-test": "npx tsc && jest --forceExit"
   },
   "keywords": [
     "cache",
     "memory",
-    "lru"
+    "lru",
+    "autodelete",
+    "flexible",
+    "simple"
   ],
   "author": "alanfilho184",
   "license": "ISC",

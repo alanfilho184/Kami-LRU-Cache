@@ -12,8 +12,23 @@ Foi criado com a ideia de ser um modulo mais flexível e simples de se utilizar 
 ### `.delete(key: String): true`
 ### `.has(key: String): Boolean`
 ### `.length(): Number`
+### `.clear(): true`
 &nbsp;
-
+## Propriedades
+### `.map: Map<String, JSON>`
+### `.maxAge: Number` *READ-ONLY*
+### `.updateAgeOnGet: Boolean` *READ-ONLY*
+### `.events: EventEmitter` *READ-ONLY*
+&nbsp;
+## Eventos
+### `.on('keyAutoDelete') => key: String`
+### `.on('keySet') => key: String`
+### `.on('keyUpdateAge') => (key: String, newAge: Number)`
+### `.on('keyGet') => key: String`
+### `.on('keyHas') => (key: String, has: Boolean)`
+### `.on('cacheLength') => length: Number`
+### `.on('cacheClear') => void`
+&nbsp;
 ## Inicialização
 ```js
 const kami_cache = require("kami-lru-cache").kami_cache
@@ -67,4 +82,69 @@ const quantidadeDeItensNoCache = cache.length()
 const meuItemApagado = cache.delete("MinhaChave")
 
 // meuItemApagado = true
+```
+
+### .clear
+```js
+const meuCacheVazio = cache.clear()
+
+// meuCacheVazio = true
+```
+
+## Eventos
+
+### keyAutoDelete
+```js
+cache.events.on("keyAutoDelete", (key) => {
+    //To Do
+})
+```
+
+### keySet
+```js
+cache.events.on("keySet", (key) => {
+    //To Do
+})
+```
+
+### keyUpdateAge
+```js
+cache.events.on("keyUpdateAge", (key, newAge) => {
+    //To Do
+})
+```
+
+### keyGet
+```js
+cache.events.on("keyGet", (key) => {
+    //To Do
+})
+```
+
+### keyDelete
+```js
+cache.events.on("keyDelete", (key) => {
+    //To Do
+})
+```
+
+### keyHas
+```js
+cache.events.on("keyHas", (key, has) => {
+    //To Do
+})
+```
+
+### cacheLength
+```js
+cache.events.on("cacheLength", (length) => {
+    //To Do
+})
+```
+
+### cacheClear
+```js
+cache.events.on("cacheClear", () => {
+    //To Do
+})
 ```

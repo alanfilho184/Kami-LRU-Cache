@@ -1,4 +1,6 @@
 .github
-LICENSE
 tsconfig.json
 jest.config.js
+dist/index.test.d.ts
+dist/index.test.js
+src/index.test.ts
